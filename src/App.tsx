@@ -65,7 +65,7 @@ const App: React.FC<AppProps> = ({ user, onRestoreData }) => {
   } = useAppData();
 
   const [isDarkMode, setIsDarkMode] = usePersistentState<boolean>('focusflow-theme-dark', true);
-  const [accentColor, setAccentColor] = usePersistentState<string>('focusflow-theme-accent', accentColors[0].hex);
+  const [accentColor, setAccentColor] = usePersistentState<string>('focusflow-theme-accent', accentColors[0]?.hex || '#4f46e5');
   const [wallpaper, setWallpaper] = usePersistentState<string>('focusflow-theme-wallpaper', 'deep_space');
   const [language, setLanguage] = usePersistentState<Language>('focusflow-language', 'en');
 
@@ -203,7 +203,7 @@ const App: React.FC<AppProps> = ({ user, onRestoreData }) => {
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
         <div
         className="h-screen w-screen bg-cover bg-center transition-all duration-500 font-sans overflow-hidden relative"
-        style={!isLiveWallpaper ? { backgroundImage: `url(${isDarkMode ? currentWallpaper.darkUrl : currentWallpaper.lightUrl})` } : {}}
+        style={!isLiveWallpaper && currentWallpaper ? { backgroundImage: `url(${isDarkMode ? currentWallpaper.darkUrl : currentWallpaper.lightUrl})` } : {}}
         >
         {isLiveWallpaper && liveVideoId && (
             <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">

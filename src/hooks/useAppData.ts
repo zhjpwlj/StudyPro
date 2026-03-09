@@ -6,7 +6,7 @@ import { usePersistentState } from './usePersistentState';
 const getTomorrow = (): string => {
   const d = new Date();
   d.setDate(d.getDate() + 1);
-  return d.toISOString().split('T')[0];
+  return d.toISOString().split('T')[0] as string;
 };
 
 export const useAppData = (): {
@@ -40,8 +40,8 @@ export const useAppData = (): {
         id: 'task-1', 
         title: 'Welcome to StudyPro OS!', 
         completed: false, 
-        project: 'General', 
-        priority: 'high', 
+        projectId: 'General', 
+        priority: 1, 
         createdAt: Date.now(), 
         status: 'todo',
         deadline: getTomorrow(),

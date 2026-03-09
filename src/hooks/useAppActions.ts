@@ -107,7 +107,7 @@ export const useAppActions = ({
             
             return {
                 ...g,
-                completedDates: newCompletedDates,
+                completedDates: newCompletedDates as string[],
                 streak: completedToday ? Math.max(0, g.streak - 1) : g.streak + 1
             }
         }
@@ -219,7 +219,7 @@ export const useAppActions = ({
           date,
           startTime,
           endTime,
-          color: accentColors[Math.floor(Math.random() * accentColors.length)].hex,
+          color: accentColors.length > 0 ? accentColors[Math.floor(Math.random() * accentColors.length)].hex : '#4f46e5',
         };
         handleAddEvent(newEvent);
         break;
@@ -241,7 +241,7 @@ export const useAppActions = ({
       case 'addGoal': {
         const title = typeof args.title === 'string' ? args.title : 'New Goal';
         const icon = typeof args.icon === 'string' ? args.icon : '🎯';
-        const color = typeof args.color === 'string' ? args.color : accentColors[Math.floor(Math.random() * accentColors.length)].hex;
+        const color = typeof args.color === 'string' ? args.color : (accentColors.length > 0 ? accentColors[Math.floor(Math.random() * accentColors.length)].hex : '#4f46e5');
         const newGoal: Omit<Goal, 'id'> = {
           title,
           icon,

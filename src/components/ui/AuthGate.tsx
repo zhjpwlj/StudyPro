@@ -108,7 +108,8 @@ const AuthGate: React.FC = () => {
                 const { data, error } = await restoreData(currentUser);
                 if (error) {
                     console.error("Failed to fetch initial data", error);
-                    if (error.message?.includes('User not authenticated') || error.message?.includes('JWT') || error.message?.includes('invalid')) {
+                    const errorMessage = (error as { message?: string })?.message;
+                    if (errorMessage?.includes('User not authenticated') || errorMessage?.includes('JWT') || errorMessage?.includes('invalid')) {
                         await signOut();
                         setSession(null);
                         setUser(null);

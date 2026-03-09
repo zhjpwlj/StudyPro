@@ -56,7 +56,7 @@ const ClassSchedule: React.FC<ClassScheduleProps> = ({ classes, onAddClass, onDe
     setInstructor('');
     setLocation('');
     setSessions([]);
-    setColor(COLORS[0]);
+    setColor(COLORS[0] || '#000000');
   };
 
   // Sort classes by day and time for the list view
