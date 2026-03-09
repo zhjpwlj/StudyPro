@@ -76,6 +76,7 @@ export interface Task {
   timeSpent?: number; // Total seconds focused on this task
   recurrence?: 'daily' | 'weekly' | 'monthly' | 'none';
   attachments?: string[];
+  createdAt: number;
 }
 
 
